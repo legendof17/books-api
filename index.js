@@ -33,4 +33,12 @@ app.post('/api/books/addBook', (req, res) => {
     res.send(book)
 })
 
+app.put('/api/books/:bookId', (req, res) => {
+    const book = books.find(book => book.id === parseInt(req.params.bookId))
+    if(!book) res.status(404).send('Book not found')
+
+    book.title = req.body.title
+    res.send(book)
+})
+
 app.listen(3030)
